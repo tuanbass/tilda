@@ -1,3 +1,6 @@
+# Purpose 
+I fork the repository in order to add some features I need 
+- Show the tab number (so we can q
 # What is Tilda?
 
 Tilda is a terminal emulator and can be compared with other popular terminal emulators such as
