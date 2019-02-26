@@ -249,16 +249,23 @@ static void window_title_changed_cb (GtkWidget *widget, gpointer data)
             gchar *titleOffset = title + strlen(title) - length;
             shortTitle = g_strdup_printf ("...%s", titleOffset);
         }
-        gtk_label_set_text (GTK_LABEL(label), shortTitle);
+	gchar* titleWithIndex = g_strdup_printf ("%d.%s", page + 1, shortTitle);
+	
+        gtk_label_set_text (GTK_LABEL(label), titleWithIndex);
         if (active) {
-            gtk_window_set_title (GTK_WINDOW (tt->tw->window), shortTitle);
+            gtk_window_set_title (GTK_WINDOW (tt->tw->window), titleWithIndex);
         }
         g_free(shortTitle);
+        g_free(titleWithIndex);
     } else {
-        gtk_label_set_text (GTK_LABEL(label), title);
+        gchar* titleWithIndex = g_strdup_printf ("%d.%s", page + 1, title);
+
+        gtk_label_set_text (GTK_LABEL(label), titleWithIndex);
         if (active) {
-            gtk_window_set_title (GTK_WINDOW (tt->tw->window), title);
+            gtk_window_set_title (GTK_WINDOW (tt->tw->window), titleWithIndex);
         }
+	g_free(titleWithIndex);
+
     }
     if(config_getbool("show_title_tooltip"))
       gtk_widget_set_tooltip_text(label, title);

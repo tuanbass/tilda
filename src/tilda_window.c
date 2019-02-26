@@ -1076,9 +1076,14 @@ gint tilda_window_add_tab (tilda_window *tw)
     }
 
     /* Create page and append to notebook */
-    label = gtk_label_new (config_getstr("title"));
+    gchar *title = config_getstr("title");
+    label = gtk_label_new (title);
+
     /* Strangely enough, prepend puts pages on the end */
     index = gtk_notebook_append_page (GTK_NOTEBOOK(tw->notebook), tt->hbox, label);
+    gchar* titleWithIndex = g_strdup_printf ("%d.%s", index + 1, title);
+    gtk_label_set_text (GTK_LABEL(label), titleWithIndex);
+    /*  */
     gtk_notebook_set_current_page (GTK_NOTEBOOK(tw->notebook), index);
     gtk_notebook_set_tab_reorderable (GTK_NOTEBOOK(tw->notebook), tt->hbox, TRUE);
 
