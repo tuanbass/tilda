@@ -4,7 +4,6 @@ po/*~
 po/*.gmo
 po/*.sed
 po/*.sin
-po/*.po
 Makefile
 Makefile.in
 aclocal.m4
